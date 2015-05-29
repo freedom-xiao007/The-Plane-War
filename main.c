@@ -8,6 +8,7 @@
 #include"bullet.h"
 #include"plane.h"
 #include"playgame.h"
+#include"ebullet.h"
 
 int main()
 {
@@ -22,17 +23,18 @@ int main()
 	 sf::Sprite smap(tmap);
 
 	 //set hero
-	 Plane hero;
+	 Plane* heros=Plane::comeit();
 
 	 //set enemy
 	 Enemy* holle=Enemy::comeit();
 
 	 //set bullet
 	 Bullet* bullets=Bullet::comeit();
+	 EBullet* ebullet=EBullet::comeit();
 
 	 //set backgroundmusic
 	 sf::Music backgroundmusic;
-	 if(!backgroundmusic.openFromFile("background1.wav")){
+	 if(!backgroundmusic.openFromFile("background2.wav")){
 			std::cout<<"ERRW"<<std::endl;
 	 }
 	 backgroundmusic.play();
@@ -55,10 +57,7 @@ int main()
 
 			window->clear();
 			window->draw(smap);
-			window->draw(hero.splane);
-			control->play(hero);
-			holle->Enemy::fight();
-			bullets->Bullet::fire(hero);
+			Playgame::getcontrol()->play();
 			window->display();
 	 }
 }
