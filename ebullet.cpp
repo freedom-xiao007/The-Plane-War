@@ -7,7 +7,6 @@
 #include<stdlib.h>
 #include<SFML/Graphics.hpp>
 
-#define T
 
 int EBullet::i=0;
 
@@ -53,34 +52,41 @@ void EBullet::crete_bullet(Enemy* enemy)
 	 EBullet::create->on=1;
 	 EBullet::create->existson=1;
 	 if(EBullet::create->existson==1){
-	 EBullet::create=EBullet::create->next;
-#ifndef T
-	 std::cout<<"CREATE BULLET"<<std::endl;
-#endif
+			EBullet::create=EBullet::create->next;
 	 }
 }
 
 void EBullet::show_bullet(EBullet* head)
 {
 	 if(head->on==1){
-						Playgame::getcontrol()->windowtile->draw(head->sbullet);
-				 if(head->existson==1){
-						EBullet::show_bullet(head->next);
-				 }}
+			Playgame::getcontrol()->windowtile->draw(head->sbullet);
+			if(head->existson==1){
+				 EBullet::show_bullet(head->next);
+			}}
 }
 
 void EBullet::move_bullet(EBullet* head, Plane* plane)
 {
 	 if(head->on==1){
 			if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-				 head->sbullet.move(0.0, 2.0);
-#ifndef TT
-				 head->checkcllision(plane);
-#endif
-				 head->x+=2;
-			if(head->existson==1){
-				 EBullet::move_bullet( head->next, plane );
-			}}}
+				 if(head->bulletdead==0){
+						head->sbullet.move(0.0, 2.0);
+						head->checkcllision(plane);
+						head->x+=2;
+				 }
+				 else{
+						if(EBullet::j==5){
+						head->sbullet.move(0.0, 100.0);
+						head->x+=100;
+						EBullet::j=0;
+						}
+						else{
+							 ++EBullet::j;
+						}
+				 }
+				 if(head->existson==1){
+						EBullet::move_bullet( head->next, plane );
+				 }}}
 }
 
 void EBullet::clear_bullet()
@@ -91,9 +97,6 @@ void EBullet::clear_bullet()
 						EBullet::bullethead=EBullet::bullethead->next;
 						delete EBullet::bulletline;
 						EBullet::bulletline=EBullet::bullethead;
-#ifndef T
-						std::cout<<"DELETE BULLET"<<std::endl;
-#endif
 				 }
 			}
 	 }
@@ -102,33 +105,28 @@ void EBullet::clear_bullet()
 void EBullet::fire(Enemy* enemys, Plane* plane)
 {
 	 if(enemys->enemydead==0){
-	 EBullet::clear_bullet();
-	 EBullet::i=rand() % 100;
+			EBullet::clear_bullet();
+			EBullet::i=rand() % 100;
 			if(EBullet::i==4){
 				 EBullet::crete_bullet(enemys);
 				 EBullet::i=0;
 			}
-	 EBullet::show_bullet(EBullet::bullethead);
-	 EBullet::move_bullet(EBullet::bullethead, plane);
+			EBullet::show_bullet(EBullet::bullethead);
+			EBullet::move_bullet(EBullet::bullethead, plane);
 	 }
 }
 
 void EBullet::checkcllision(Plane* plane)
 {
-#ifndef TT
 	 if(this->bulletdead==0){//检查子弹是否存在
-	 if(this->sbullet.getGlobalBounds().intersects(plane->splane.getGlobalBounds())&&plane->planedead==0){//检查是否碰撞和敌机是否存在
-			this->explosivemusic.play();
-			this->bulletdead=1;//设定子弹死亡
-			plane->planedead=1;//设定敌机死亡
-#define BB
-#ifndef B
-			std::cout<<"CLLISION"<<std::endl;
-#endif
-			this->tbullet.loadFromFile("disppear.png");
+			if(this->sbullet.getGlobalBounds().intersects(plane->splane.getGlobalBounds())&&plane->planedead==0){//检查是否碰撞和敌机是否存在
+				 std::cout<<"rguhtu2134124124"<<std::endl;
+				 this->explosivemusic.play();
+				 this->bulletdead=1;//设定子弹死亡
+				 plane->planedead=1;//设定敌机死亡
+				 this->tbullet.loadFromFile("disppear.png");
+			}
 	 }
-	 }
-#endif
 }
 
 void EBullet::disppear(Enemy* enemy)

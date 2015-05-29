@@ -3,6 +3,7 @@
 #include"plane.h"
 #include"bullet.h"
 #include"enemy.h"
+#include"scenario.h"
 
 #define TT
 
@@ -15,9 +16,13 @@ Playgame::Playgame()
 
 void Playgame::play()
 {
+	 windowtile->clear();
+	 Scenario::setscenario();
 	 Plane::comeit()->show();
 	 Bullet::fire(Plane::comeit());
 	 Enemy::fight(Plane::comeit());
+	 Enemy_one::figet(Plane::comeit());
+	 windowtile->display();
 }
 
 sf::RenderWindow* Playgame::getwindow()

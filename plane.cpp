@@ -5,6 +5,7 @@
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
+#include"scenario.h"
 
 Plane* Plane::hero=new Plane;
 
@@ -23,43 +24,48 @@ Plane::Plane()
 	 splane.setTexture(tplane);
 	 splane.setPosition(sf::Vector2f(150.0, 470.0));
 	 planedead=0;
+	 blood=3;
 	 dis=0;
 }
 
 void Plane::lmove()
 {
 	 if(x>0){
-			splane.move(-3.0, 0.0);
-			x-=3;
+			splane.move(-Scenario::speed, 0.0);
+			x-=Scenario::speed;
 	 }
 }
 
 void Plane::rmove()
 {
 	 if(x<270){
-			splane.move(3.0, 0.0);
-			x+=3;
+			splane.move(Scenario::speed, 0.0);
+			x+=Scenario::speed;
 	 }
 }
 
 void Plane::umove()
 {
 	 if(y>0){
-			splane.move(0.0, -3);
-			y-=3;
+			splane.move(0.0, -Scenario::speed);
+			y-=Scenario::speed;
 	 }
 }
 
 void Plane::dmove()
 {
 	 if(y<470){
-			splane.move(0.0, 3.0);
-			y+=3;
+			splane.move(0.0, Scenario::speed);
+			y+=Scenario::speed;
 	 }
 }
 
 void Plane::show()
 {
+	 if(this->blood==0){
+			std::cout<<"DEAD!!!!!!!!!!!!"<<std::endl;
+	 }
+	 else{
 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 			lmove();
 	 }
@@ -77,6 +83,7 @@ if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 				 if(this->dis<5){
 				 this->tplane.loadFromFile("enemy1.png");
 				 }
+				 std::cout<<"sdfsdfsdfsdfdsf"<<std::endl;
 				 if(this->dis==10){
 						this->tplane.loadFromFile("enemy2.png");
 				 }
@@ -84,12 +91,16 @@ if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
 						this->tplane.loadFromFile("enemy3.png");
 				 }
 				 if(this->dis==20){
-						this->tplane.loadFromFile("disppear.png");
+						this->tplane.loadFromFile("plane.png");
+						this->blood-=1;
+						this->planedead=0;
+						this->dis=0;
 				 }
 				 else{
 						++(this->dis);
 				 }
 	 }
-Playgame::getcontrol()->windowtile->draw(Plane::hero->splane);
+	 Playgame::getcontrol()->windowtile->draw(Plane::hero->splane);
+	 }
 }
 

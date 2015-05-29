@@ -1,6 +1,9 @@
 #ifndef PLAY
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
+#include<sstream>
+#include<stdlib.h>
+#include<string>
 
 class Plane;
 
@@ -14,7 +17,7 @@ class Playgame
 			static Playgame* power;
 			static int i;
 			sf::RenderWindow* windowtile;
-};
+	};
 
 #endif
 

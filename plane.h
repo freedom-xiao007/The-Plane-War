@@ -19,6 +19,7 @@ class Plane
 			int y;
 			int planedead;
 			int dis;
+			int blood;
 			sf::Texture tplane;
 			sf::Sprite splane;
 			static Plane* hero;
