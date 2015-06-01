@@ -16,7 +16,6 @@ class Bullet
 {
 	 public:
 			Bullet();
-			void disppear(Enemy* enemy);
 			static void move_bullet(Bullet* head, Enemy* eheads);
 			static void crete_bullet(Plane* plane);
 			static void clear_bullet();
@@ -37,8 +36,6 @@ class Bullet
 			static int i;
 			bool bulletdead;
 			sf::Clock clock;
-			static sf::Time time1;
-			static sf::Time time2;
 			sf::Texture tbullet;
 			sf::Sprite sbullet;
 			static Bullet* come;

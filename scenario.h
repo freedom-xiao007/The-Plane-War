@@ -14,7 +14,6 @@ class Scenario
 			Scenario();
 			void setmap();
 			void setscore();
-			void setmusic();
 			static void adjustspeed();
 			static void setscenario();
 			static int level;
@@ -27,7 +26,6 @@ class Scenario
 			sf::Text gradetext;
 			sf::Texture tmap;
 			sf::Sprite smap;
-			sf::Music backgroundmusic;
 			static bool musicon;
 			static float speed;
 			static int adjust;

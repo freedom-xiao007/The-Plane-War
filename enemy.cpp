@@ -7,7 +7,6 @@
 #include"bullet.h"
 #include"ebullet.h"
 #include"plane.h"
-#include"scenario.h"
 
 
 int Enemy::i=0;
@@ -66,7 +65,7 @@ void Enemy::show_enemy(Enemy* head)
 						head->tenemy.loadFromFile("enemy3.png");
 				 }
 				 if(head->dis==20){
-						head->tenemy.loadFromFile("disppear.png");
+						head->tenemy.loadFromFile("dispear.png");
 						head->senemy.move(0.0, 100.0);
 						head->y+=100;
 				 }
@@ -91,8 +90,8 @@ void Enemy::move_enemy(Enemy* head, Bullet* bheads, Plane* plane)
 			if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				 if(head->enemydead==0){
-						head->senemy.move(0.0, 0.2*Scenario::speed);
-						head->y+=0.2*Scenario::speed;
+						head->senemy.move(0.0, 0.5);
+						head->y+=0.5;
 				 }
 			}
 			if(head->existson==1){

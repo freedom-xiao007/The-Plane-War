@@ -1,5 +1,5 @@
 all=main.o playgame.o plane.o enemy.o bullet.o \
-		ebullet.o scenario.o enemy1.o
+		ebullet.o scenario.o 
 
 
 g=g++
@@ -28,9 +28,6 @@ ebullet.o:ebullet.cpp ebullet.h
 
 scenario.o:scenario.cpp scenario.h
 	g++ -c scenario.cpp scenario.h
-
-enemy1.o:enemy1.h enemy1.cpp
-	g++ -c enemy1.h enemy1.cpp
 
 clear:
 	rm *.o

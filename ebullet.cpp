@@ -120,7 +120,6 @@ void EBullet::checkcllision(Plane* plane)
 {
 	 if(this->bulletdead==0){//检查子弹是否存在
 			if(this->sbullet.getGlobalBounds().intersects(plane->splane.getGlobalBounds())&&plane->planedead==0){//检查是否碰撞和敌机是否存在
-				 std::cout<<"rguhtu2134124124"<<std::endl;
 				 this->explosivemusic.play();
 				 this->bulletdead=1;//设定子弹死亡
 				 plane->planedead=1;//设定敌机死亡
@@ -129,8 +128,3 @@ void EBullet::checkcllision(Plane* plane)
 	 }
 }
 
-void EBullet::disppear(Enemy* enemy)
-{
-	 enemy->disppear=1;
-	 std::cout<<enemy->disppear<<std::endl;
-}

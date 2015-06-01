@@ -22,7 +22,7 @@ double Scenario::grade=0;
 Scenario::Scenario()
 {
 	 //set background
-	 if(!tmap.loadFromFile("background1.jpg")){
+	 if(!tmap.loadFromFile("1background.jpg")){
 			std::cout<<"ERROW"<<std::endl;
 	 }
 
@@ -30,14 +30,9 @@ smap.setTexture(tmap);
 
 	  strgrade="0";
 
-	 if(!gradefont.loadFromFile("ziti.TTF")){
+	 if(!gradefont.loadFromFile("ziti.ttf")){
 			std::cout<<"kfjs"<<std::endl;
 	 }
-
-	 if(!backgroundmusic.openFromFile("background2.wav")){
-			std::cout<<"ERRW"<<std::endl;
-	 }
-
 	 gradetext.setFont(gradefont);
 	 gradetext.setString(strgrade);
 	 gradetext.setCharacterSize(20);
@@ -49,8 +44,6 @@ void Scenario::setscenario()
 {
 	 Scenario::comeit()->setmap();
 	 Scenario::comeit()->setscore();
-	 Scenario::comeit()->setmusic();
-	 Scenario::adjustspeed();
 }
 
 void Scenario::setscore()
@@ -65,15 +58,6 @@ void Scenario::setscore()
 void Scenario::setmap()
 {
 	 Playgame::getcontrol()->windowtile->draw(smap);
-}
-
-void Scenario::setmusic()
-{
-	 if(Scenario::musicon==0){
- 	 backgroundmusic.play();
-	 Scenario::musicon=1;
-	 }
-
 }
 
 void Scenario::adjustspeed()

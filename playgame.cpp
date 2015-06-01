@@ -17,11 +17,10 @@ Playgame::Playgame()
 void Playgame::play()
 {
 	 windowtile->clear();
-	 Scenario::setscenario();
+     Scenario::setscenario();
 	 Plane::comeit()->show();
 	 Bullet::fire(Plane::comeit());
 	 Enemy::fight(Plane::comeit());
-	 Enemy_one::figet(Plane::comeit());
 	 windowtile->display();
 }
 
