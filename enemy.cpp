@@ -7,9 +7,12 @@
 #include"bullet.h"
 #include"ebullet.h"
 #include"plane.h"
+#include"scenario.h"
 
 
 int Enemy::i=0;
+
+int Enemy::speed=0.5;
 
 Enemy* Enemy::create=new Enemy;
 
@@ -89,11 +92,17 @@ void Enemy::move_enemy(Enemy* head, Bullet* bheads, Plane* plane)
 	 if(head->on==1){
 			if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
+                if(Scenario::speed<=2){
 				 if(head->enemydead==0){
-						head->senemy.move(0.0, 0.5);
-						head->y+=0.5;
+						head->senemy.move(0.0, 1.0);
+						head->y+=1;
 				 }
-			}
+                }
+                if(Scenario::speed>2){
+                    head->senemy.move(0.0, 3.0);
+                    head->y+=3;
+                }
+            }
 			if(head->existson==1){
 				 Enemy::move_enemy(head->next, bheads, plane);
 			}}
@@ -115,7 +124,7 @@ void Enemy::clear_enemy()
 void Enemy::fight(Plane* plane)
 {
 	 Enemy::clear_enemy();
-	 if(Enemy::i==50){
+	 if(Enemy::i==20){
 			Enemy::crete_enemy();
 			Enemy::i=0;
 	 }

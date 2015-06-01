@@ -14,6 +14,7 @@ class Enemy
 {
 	 public:
 			Enemy();
+            static int speed;
 			static void move_enemy(Enemy* head, Bullet* bheads, Plane* plane);
 			void fire(Enemy* enemys, Plane* plane);
 			static void crete_enemy();

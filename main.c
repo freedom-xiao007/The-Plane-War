@@ -13,8 +13,7 @@
 
 int main()
 {
-	 Playgame* control=Playgame::getcontrol();//set a button to control game
-	 sf::RenderWindow* window=control->getwindow();
+	 sf::RenderWindow* window=Playgame::getcontrol()->getwindow();//得到窗口的控制
 
 	 //set backgroundmusic
 	 sf::Music backgroundmusic;
@@ -23,9 +22,10 @@ int main()
 	 }
 	 backgroundmusic.play();
 
+     //控制游戏速度
 	 window->setVerticalSyncEnabled(true);
 	 window->setFramerateLimit(60);
-	 srand(time(0));
+	 srand(time(0));//设置随机数
 
 	 //window behavior
 	 while(window->isOpen())
@@ -37,7 +37,6 @@ int main()
 						window->close();
 				 }
 			}
-
 
 			window->clear();
 			Playgame::getcontrol()->play();

@@ -29,7 +29,7 @@ Bullet* Bullet::comeit()
 
 Bullet::Bullet()
 {
-    if(!tbullet.loadFromFile("shoot.jpg")){
+    if(!tbullet.loadFromFile("shoot.png")){
         std::cout<<"ENEMY"<<std::endl;
     }
     sbullet.setTexture(tbullet);
@@ -68,7 +68,7 @@ void Bullet::move_bullet(Bullet* head, Enemy* eheads)
     if(head->on==1){
         if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             if(head->bulletdead==0){
-                head->sbullet.move(0.0, -5.0);
+                head->sbullet.move(0.0, -10.0);
                 head->checkcllision(Enemy::enemyhead);
                 head->x-=5;
             }

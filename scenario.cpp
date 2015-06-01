@@ -22,7 +22,7 @@ double Scenario::grade=0;
 Scenario::Scenario()
 {
 	 //set background
-	 if(!tmap.loadFromFile("1background.jpg")){
+	 if(!tmap.loadFromFile("background1.jpg")){
 			std::cout<<"ERROW"<<std::endl;
 	 }
 
@@ -42,6 +42,10 @@ smap.setTexture(tmap);
 
 void Scenario::setscenario()
 {
+    if(Scenario::grade==50000){
+        Scenario::level=2;
+    }
+    Scenario::adjustspeed();
 	 Scenario::comeit()->setmap();
 	 Scenario::comeit()->setscore();
 }
@@ -57,6 +61,9 @@ void Scenario::setscore()
 
 void Scenario::setmap()
 {
+    if(Scenario::level==2){
+        tmap.loadFromFile("background2.jpg");
+    }
 	 Playgame::getcontrol()->windowtile->draw(smap);
 }
 
