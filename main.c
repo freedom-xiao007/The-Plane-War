@@ -18,7 +18,6 @@ int main()
 	 //set backgroundmusic
 	 sf::Music backgroundmusic;
 	 if(!backgroundmusic.openFromFile("background.wav")){
-			std::cout<<"ERRW"<<std::endl;
 	 }
 	 backgroundmusic.play();
 

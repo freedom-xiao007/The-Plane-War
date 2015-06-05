@@ -25,6 +25,8 @@ class Enemy
 			static Enemy* create;
 			static Enemy* enemyhead;
 			static Enemy* enemyline;
+            static int move;
+            static int enemystyle;
 			bool enemydead;
 			bool on;
 			bool disppear;

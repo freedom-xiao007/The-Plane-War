@@ -18,7 +18,6 @@ Plane::Plane()
     x=150;
     y=470;
     if(!tplane.loadFromFile("hero.png")){
-        std::cout<<"ERROW"<<std::endl;
     }
     splane.setTexture(tplane);
     splane.setPosition(sf::Vector2f(150.0, 470.0));
@@ -62,7 +61,6 @@ void Plane::dmove()
 void Plane::show()
 {
     if(this->blood==0){
-        std::cout<<"DEAD!!!!!!!!!!!!"<<std::endl;
     }
     else{
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
@@ -80,11 +78,9 @@ void Plane::show()
 
         if(planedead==1){
             if(tplane.loadFromFile("enemy3.png")){
-                std::cout<<"sfsfs"<<std::endl;
             }
             if(dis==5){
                 if(tplane.loadFromFile("hero.png")){
-                    std::cout<<"heor"<<std::endl;
                     planedead=0;
                     dis=0;
                     blood-=1;

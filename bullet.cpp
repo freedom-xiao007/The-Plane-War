@@ -29,12 +29,10 @@ Bullet* Bullet::comeit()
 
 Bullet::Bullet()
 {
-    if(!tbullet.loadFromFile("shoot.png")){
-        std::cout<<"ENEMY"<<std::endl;
+    if(!tbullet.loadFromFile("bullet1.png")){
     }
     sbullet.setTexture(tbullet);
     if(explosive.loadFromFile("explosive.wav")){
-        std::cout<<"EWWW"<<std::endl;
     }
     this->explosivemusic.setBuffer(explosive);
     this->on=0;

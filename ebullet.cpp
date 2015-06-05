@@ -31,12 +31,10 @@ EBullet* EBullet::comeit()
 
 EBullet::EBullet()
 {
-    if(!tbullet.loadFromFile("shoot.png")){
-        std::cout<<"ENEMY"<<std::endl;
+    if(!tbullet.loadFromFile("bullet2.png")){
     }
     sbullet.setTexture(tbullet);
     if(explosive.loadFromFile("explosive.wav")){
-        std::cout<<"EWWW"<<std::endl;
     }
     this->explosivemusic.setBuffer(explosive);
     this->on=0;
@@ -123,7 +121,7 @@ void EBullet::checkcllision(Plane* plane)
             this->explosivemusic.play();
             this->bulletdead=1;//设定子弹死亡
             plane->planedead=1;//设定敌机死亡
-            this->tbullet.loadFromFile("disppear.png");
+            this->tbullet.loadFromFile("dispear.png");
         }
     }
 }

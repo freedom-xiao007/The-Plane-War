@@ -23,7 +23,6 @@ Scenario::Scenario()
 {
 	 //set background
 	 if(!tmap.loadFromFile("background1.jpg")){
-			std::cout<<"ERROW"<<std::endl;
 	 }
 
 smap.setTexture(tmap);
@@ -31,7 +30,6 @@ smap.setTexture(tmap);
 	  strgrade="0";
 
 	 if(!gradefont.loadFromFile("ziti.ttf")){
-			std::cout<<"kfjs"<<std::endl;
 	 }
 	 gradetext.setFont(gradefont);
 	 gradetext.setString(strgrade);
