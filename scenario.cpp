@@ -1,90 +1,53 @@
-#include"scenario.h"
-#include"playgame.h"
+/*************************************************************************
+	> File Name: scenario.cpp
+	> Author: lw
+	> Mail: 1243925457@qq.com
+	> Created Time: 2015年06月05日 星期五 23时03分42秒
+ ************************************************************************/
+
 #include<iostream>
-
-Scenario* Scenario::it=new Scenario;
-
-int Scenario::adjust=0;
-
-bool Scenario::musicon=0;
-
-float Scenario::speed=1;
-
-int Scenario::level=1;
-
-Scenario* Scenario::comeit()
-{
-	 return it;
-}
-
-double Scenario::grade=0;
+#include"scenario.h"
+#include"map.h"
+#include"blood_hero.h"
 
 Scenario::Scenario()
 {
-	 //set background
-	 if(!tmap.loadFromFile("background1.jpg")){
-	 }
-
-smap.setTexture(tmap);
-
-	  strgrade="0";
-
-	 if(!gradefont.loadFromFile("ziti.ttf")){
-	 }
-	 gradetext.setFont(gradefont);
-	 gradetext.setString(strgrade);
-	 gradetext.setCharacterSize(20);
-	 gradetext.setColor(sf::Color::White);
-
+    this->map=new Map;
+    this->gamebegin=0;
+    this->gameend=0;
 }
 
-void Scenario::setscenario()
+void Scenario::set_scenario()
 {
-    if(Scenario::grade==50000){
-        Scenario::level=2;
+    if(this->gamebegin==0){
+        this->map->begin_interface();
     }
-    Scenario::adjustspeed();
-	 Scenario::comeit()->setmap();
-	 Scenario::comeit()->setscore();
-}
-
-void Scenario::setscore()
-{
-	 ssgrade << grade;
-	 ssgrade >> strgrade;
-	 ssgrade.clear();
-	 gradetext.setString(strgrade);
-	 Playgame::getcontrol()->windowtile->draw(gradetext);
-}
-
-void Scenario::setmap()
-{
-    if(Scenario::level==2){
-        tmap.loadFromFile("background2.jpg");
+    if(this->gamebegin==1&&this->gameend==0){
+        this->map->fight_interface();
     }
-	 Playgame::getcontrol()->windowtile->draw(smap);
+    if(this->gameend==1){
+        this->map->end_interfece();
+    }
 }
 
-void Scenario::adjustspeed()
+void Scenario::adjust_interface()
 {
-	 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Equal)){
-			if(Scenario::adjust==5){
-			if(Scenario::speed<6){
-			Scenario::speed+=1;
-			Scenario::adjust=0;
-			}}
-			else{
-				 ++Scenario::adjust;
-			}
-	 }
-	 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Dash)){
-			if(Scenario::adjust==5){
-			if(Scenario::speed>1){
-				 Scenario::speed-=1;
-				 Scenario::adjust=0;
-			}}
-			else{
-				 ++Scenario::adjust;
-			}
-	 }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        this->gamebegin=1;
+    }
+    if(Blood_hero::blood_hero==0){
+        this->gameend=1;
+    }
+    if(this->gameend==1){
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::R)){
+            this->gameend=0;
+            this->gamebegin=1;
+        }
+    }
+}
+ 
+void Scenario::interface()
+{
+    this->set_scenario();
+    this->adjust_interface();
 }

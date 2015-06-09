@@ -1,34 +1,30 @@
-#ifndef SCENARIO
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-#include<sstream>
-#include<stdlib.h>
-#include<string>
+/*************************************************************************
+	> File Name: scenario.h
+	> Author: lw
+	> Mail: 1243925457@qq.com
+	> Created Time: 2015年06月05日 星期五 22时57分35秒
+ ************************************************************************/
+
+#ifndef _SCENARIO_H
+#define _SCENARIO_H
 #include<SFML/Audio.hpp>
+#include<SFML/Graphics.hpp>
+#include<SFML/Network.hpp>
+#include<SFML/System.hpp>
+#include<SFML/Window.hpp>
+#include<iostream>
 
-class Playgame;
-
+class Map;
 class Scenario
 {
-	 public:
-			Scenario();
-			void setmap();
-			void setscore();
-			static void adjustspeed();
-			static void setscenario();
-			static int level;
-			static Scenario* comeit();
-			static Scenario* it;
-			static double grade;
-			std::string strgrade;
-			std::stringstream ssgrade;
-			sf::Font gradefont;
-			sf::Text gradetext;
-			sf::Texture tmap;
-			sf::Sprite smap;
-			static bool musicon;
-			static float speed;
-			static int adjust;
+    public:
+        Scenario();
+        Map* map;
+        void set_scenario();
+        void adjust_interface();
+        void interface();
+        bool gamebegin;
+        bool gameend;
+    private:
 };
-
 #endif
