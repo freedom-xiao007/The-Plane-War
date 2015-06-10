@@ -8,6 +8,8 @@
 #include"enemy1.h"
 #include"mywindow.h"
 #include"hero.h"
+#include"play.h"
+#include"prop.h"
 
 Enemy_one* Enemy_one::power = new Enemy_one;
 
@@ -53,8 +55,8 @@ void Enemy_one::move()
 {
     MyWindow::control()->window.draw(this->sprite);
     if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-        this->sprite.move(0.0, 3.0);
-        this->Y+=3;
+        this->sprite.move(0.0, 3.0*Play::speed);
+        this->Y+=3*Play::speed;
     }
 }
 
@@ -78,7 +80,9 @@ void Enemy_one::show_enemy(Enemy_one* heads)
         if(heads->alive==1){
             heads->move();
             if(heads->sprite.getGlobalBounds().intersects(Hero::control()->sprite.getGlobalBounds())&&Hero::control()->alive==1){
+                if(Prop::control()->is_fence==0){
                 Hero::control()->alive=0;
+                }
                 heads->alive=0;
             }
         }

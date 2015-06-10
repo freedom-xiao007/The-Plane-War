@@ -23,6 +23,8 @@ class Play
         void play();
         static Play* control();
         Scenario* scenario;
+        static int level;
+        static int speed;
     private:
         bool is_music;
         static Play* power;

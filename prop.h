@@ -24,11 +24,12 @@ class Prop
         void weapon();
         bool can_weapon;
         bool can_fence;
+        bool is_fence;
         static int weapon_level;
     private:
         int fence_cout_down;
+        int cout_down;
         static Prop* power;
-        bool is_fence;
         sf::Texture tweapon1;
         sf::Texture tweapon2;
         sf::Sprite sweapon;

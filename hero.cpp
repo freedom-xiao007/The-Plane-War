@@ -9,6 +9,7 @@
 #include"hero.h"
 #include"gun.h"
 #include"bullet_one_hero.h"
+#include"prop.h"
 
 Hero* Hero::power = new Hero;
 
@@ -86,5 +87,21 @@ void Hero::dfly()
 
 void Hero::fire()
 {
-    Gun::fight(11);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        if(Gun::control()->cout_down==5){
+            if(Prop::weapon_level>1){
+                Bullet_one_hero::create_bullet(-15);
+                Bullet_one_hero::create_bullet(5);
+            }
+            if(Prop::weapon_level>0){
+                Bullet_one_hero::create_bullet(0);
+                Bullet_one_hero::create_bullet(-10);
+            }
+            Bullet_one_hero::create_bullet(-5);
+            Gun::control()->cout_down=0;
+        }
+        else{
+            Gun::control()->cout_down++;
+        }
+    }
 }

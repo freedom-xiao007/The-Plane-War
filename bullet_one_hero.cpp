@@ -8,8 +8,10 @@
 #include"bullet_one_hero.h"
 #include"mywindow.h"
 #include"enemy1.h"
+#include"enemys.h"
 #include"hero.h"
 #include"enemy2.h"
+#include"boss1.h"
 #include"skill_score.h"
 #include"kill_score.h"
 
@@ -51,7 +53,7 @@ void Bullet_one_hero::move()
     }
 }
 
-void Bullet_one_hero::fight(int a)
+void Bullet_one_hero::fight()
 {
     Bullet_one_hero::clear_bullet();
     Bullet_one_hero::show_bullet(Bullet_one_hero::head);
@@ -76,6 +78,7 @@ void Bullet_one_hero::show_bullet(Bullet_one_hero* heads)
             heads->move();
             heads->check_cllision(Enemy_one::head);
             heads->check_cllision(Enemy_two::head);
+            heads->check_cllision();
         }
         if(heads->exist_son==1){
             Bullet_one_hero::show_bullet(heads->next);
@@ -123,3 +126,16 @@ void Bullet_one_hero::check_cllision(Enemy_two* heads)
         }
     }
 }
+
+void Bullet_one_hero::check_cllision()
+{
+    if(Boss1::control()->on==1&&this->sprite.getGlobalBounds().intersects(Boss1::control()->get_sprite().getGlobalBounds())&&this->alive==1){
+        this->alive=0;
+        if(Boss1::control()->blood>0){
+        Boss1::control()->blood-=1;
+        }        
+        std::cout<<Boss1::control()->blood<<std::endl;
+    }
+}
+
+

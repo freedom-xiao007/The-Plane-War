@@ -9,6 +9,9 @@
 #include"mywindow.h"
 #include"hero.h"
 #include"enemy2.h"
+#include"boss1.h"
+#include"prop.h"
+#include"play.h"
 
 Bullet_one_enemy* Bullet_one_enemy::power = new Bullet_one_enemy;
 
@@ -41,8 +44,8 @@ void Bullet_one_enemy::move()
 {
     MyWindow::control()->window.draw(this->sprite);
     if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-        this->sprite.move(0.0, 0.5);
-        this->Y+=0.5;
+        this->sprite.move(0.0, 1.0*Play::speed);
+        this->Y+=1.0*Play::speed;
     }
 }
 
@@ -52,17 +55,30 @@ void Bullet_one_enemy::fight()
     Bullet_one_enemy::show_bullet(Bullet_one_enemy::head);
 }
 
-void Bullet_one_enemy::create_bullet(Enemy_two* enemys)
+void Bullet_one_enemy::create_bullet(Enemy_two* enemys, int position)
 {
     Bullet_one_enemy::create->next = new Bullet_one_enemy;
     Bullet_one_enemy::create->X=enemys->get_sprite().getPosition().x;
     Bullet_one_enemy::create->Y=enemys->get_sprite().getPosition().y;
-    Bullet_one_enemy::create->sprite.setPosition(enemys->get_sprite().getPosition());
+    Bullet_one_enemy::create->sprite.setPosition(Bullet_one_enemy::create->X+position, Bullet_one_enemy::create->Y);
 
     Bullet_one_enemy::create->exist_son=1;
     Bullet_one_enemy::create->on=1;
     Bullet_one_enemy::create=Bullet_one_enemy::create->next;
 }
+
+void Bullet_one_enemy::create_bullet(sf::Sprite sprite, int position)
+{
+    Bullet_one_enemy::create->next = new Bullet_one_enemy;
+    Bullet_one_enemy::create->X=sprite.getPosition().x;
+    Bullet_one_enemy::create->Y=sprite.getPosition().y;
+    Bullet_one_enemy::create->sprite.setPosition(Bullet_one_enemy::create->X+position, Bullet_one_enemy::create->Y);
+
+    Bullet_one_enemy::create->exist_son=1;
+    Bullet_one_enemy::create->on=1;
+    Bullet_one_enemy::create=Bullet_one_enemy::create->next;
+}
+
 
 void Bullet_one_enemy::show_bullet(Bullet_one_enemy* heads)
 {
@@ -92,6 +108,8 @@ void Bullet_one_enemy::check_cllision()
 {
     if(this->sprite.getGlobalBounds().intersects(Hero::control()->sprite.getGlobalBounds())&&head->alive==1&&this->alive==1){
         this->alive=0;
+        if(Prop::control()->is_fence==0){
         Hero::control()->alive=0;
+        }
     }
 }

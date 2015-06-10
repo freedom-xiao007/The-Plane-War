@@ -8,6 +8,7 @@
 #include<iostream>
 #include"prop.h"
 #include"mywindow.h"
+#include"blood_hero.h"
 #include"skill_score.h"
 #include"hero.h"
 
@@ -67,7 +68,7 @@ void Prop::fence()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::C)){
         if(Skill_score::k_score>10){
         this->is_fence=1;
-        Skill_score::k_score-=10;
+        Skill_score::k_score-=0;
     }
     }
 
@@ -82,7 +83,7 @@ void Prop::fence()
     }
 
     if(this->is_fence==1){
-        this->fence_p.setPosition(Hero::control()->sprite.getPosition().x-10, Hero::control()->sprite.getPosition().y-10);
+            this->fence_p.setPosition(Hero::control()->sprite.getPosition().x-15, Hero::control()->sprite.getPosition().y-15);
         MyWindow::control()->window.draw(this->fence_p);
     }
 }
@@ -94,10 +95,10 @@ void Prop::weapon()
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
-        if(Skill_score::k_score>=0){
+        if(Skill_score::k_score>=50){
             if(Prop::weapon_level<4){
-                Prop::weapon_level+=1;
-                Skill_score::k_score-=50;
+                    Prop::weapon_level+=1;
+                Skill_score::k_score-=0;
             }
         }
     }

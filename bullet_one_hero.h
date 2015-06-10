@@ -16,6 +16,7 @@
 
 class Enemy_one;
 class Enemy_two;
+class Boss1;
 class Bullet_one_hero
 {
     public:
@@ -24,7 +25,7 @@ class Bullet_one_hero
         static void create_bullet(int b);
         static void show_bullet(Bullet_one_hero* heads);
         static void clear_bullet();
-        static void fight(int a);
+        static void fight();
         static Bullet_one_hero* control();
         static Bullet_one_hero* create;
         static Bullet_one_hero* head;
@@ -33,6 +34,7 @@ class Bullet_one_hero
         static int cout_down;
         void check_cllision(Enemy_one* heads);
         void check_cllision(Enemy_two* heads);
+        void check_cllision();
         bool alive;
     private:
         bool exist_son;

@@ -4,7 +4,7 @@ s=main.o mywindow.o play.o map.o \
   gun.o enemy2.o bullet_one.enemy.o \
   blood_hero.o prop.o state.o \
   kill_score.o skill_score.o \
-  gun_e.o boss1.o
+  boss1.o checkpoint.o laser.o
 
 
 t=sfml-app
@@ -63,8 +63,11 @@ kill_score.o:kill_score.h kill_score.cpp
 skill_score.o:skill_score.h skill_score.cpp
 	g++ -c skill_score.h skill_score.cpp
 
-gun_e.o:gun_e.h gun_e.cpp
-	g++ -c gun_e.h gun_e.cpp
-
 boss1.o:boss1.h boss1.cpp
 	g++ -c boss1.h boss1.cpp
+
+checkpoint.o:checkpoint.h checkpoint.cpp
+	g++ -c checkpoint.h checkpoint.cpp
+
+laser.o:laser.h laser.cpp 
+	g++ -c laser.h laser.cpp

@@ -17,16 +17,27 @@ class Boss1
 {
     public:
         Boss1();
-        static void fight();
+        ~Boss1();
         static Boss1* control();
+        static void fight();
         void move();
         void fire();
+        void dis_step();
+        sf::Sprite get_sprite();
         int blood;        
+        int disppear;
+        bool is_disppear;
+        bool on;
     private:
+        int dis_cout_down;
+        int fire_cout_down;
+        bool alive;
         bool l_move;
         bool r_move;
         sf::Texture texture;
         sf::Sprite sprite;
+        sf::SoundBuffer soudbuffer;
+        sf::Sound sound;
         float X;
         float Y;
         static Boss1* power;

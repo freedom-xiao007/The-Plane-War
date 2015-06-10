@@ -39,7 +39,7 @@ class Enemy_two
         bool is_disppear;
         int dis_cout_down;
         int cout_down_b;
-        static int fire_cout_down;
+        int fire_cout_down;
     private:
         sf::Texture texture;
         sf::Sprite sprite;

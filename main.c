@@ -27,8 +27,9 @@
 #include"state.h"
 #include"kill_score.h"
 #include"skill_score.h"
-#include"gun_e.h"
 #include"boss1.h"
+#include"checkpoint.h"
+#include"laser.h"
 
 int main()
 {

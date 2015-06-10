@@ -9,6 +9,10 @@
 #include"scenario.h"
 #include"map.h"
 #include"blood_hero.h"
+#include"kill_score.h"
+#include"play.h"
+#include"boss1.h"
+#include"checkpoint.h"
 
 Scenario::Scenario()
 {
@@ -43,6 +47,9 @@ void Scenario::adjust_interface()
             this->gameend=0;
             this->gamebegin=1;
         }
+    }
+    if(Boss1::control()->blood==0){
+        Play::level=2;
     }
 }
  

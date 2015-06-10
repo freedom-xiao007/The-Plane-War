@@ -12,6 +12,8 @@
 #include"hero.h"
 #include"scenario.h"
 #include"prop.h"
+#include"gun.h"
+#include"checkpoint.h"
 
 Play* Play::power = new Play;
 
@@ -19,6 +21,10 @@ Play* Play::control()
 {
     return power;
 }
+
+int Play::level=1;
+
+int Play::speed=1;
 
 Play::Play()
 {
@@ -38,6 +44,7 @@ void Play::play()
     MyWindow::control()->window.clear();
     this->scenario->interface();
     if(this->scenario->gamebegin==1&&this->scenario->gameend==0){
+        Gun::fight();
         Hero::control()->fight();
         Prop::control()->setprop();
         Enemys::fight();
@@ -45,6 +52,17 @@ void Play::play()
             Play::control()->music.play();
             Play::control()->is_music=1;
         }
+        Checkpoint::setcheckpoint();
     }
     MyWindow::control()->window.display();
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::U)){
+        if(speed==1){
+            speed=2;
+        }
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        if(speed==2){
+            speed=1;
+        }
+    }
 }

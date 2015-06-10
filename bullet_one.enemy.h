@@ -13,12 +13,14 @@
 #include<iostream>
 
 class Enemy_two;
+class Boss1;
 class Bullet_one_enemy
 {
     public:
         Bullet_one_enemy();
         void move();
-        static void create_bullet(Enemy_two* enemys);
+        static void create_bullet(Enemy_two* enemys, int position);
+        static void create_bullet(sf::Sprite sprite, int position);
         static void show_bullet(Bullet_one_enemy* heads);
         static void clear_bullet();
         static void fight();

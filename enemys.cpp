@@ -10,6 +10,8 @@
 #include"enemy1.h"
 #include"enemy2.h"
 #include"boss1.h"
+#include"kill_score.h"
+#include"play.h"
 
 Enemys* Enemys::power = new Enemys;
 
@@ -20,13 +22,14 @@ Enemys* Enemys::control()
 
 int Enemys::cout_down = 0;
 
+
 Enemys::Enemys()
 {
 }
 
 void Enemys::fight()
 {
-    if(Enemy_two::cout_down==90){
+    if(Enemy_two::cout_down==(50/Play::speed)){
         Enemy_two::create_enemy();
         Enemy_two::cout_down=0;
     }
@@ -34,7 +37,7 @@ void Enemys::fight()
         ++Enemy_two::cout_down;
     }
 
-    if(Enemy_one::cout_down==20){
+    if(Enemy_one::cout_down==10/Play::speed){
         Enemy_one::create_enemy();
         Enemy_one::cout_down=0;
     }
@@ -44,7 +47,14 @@ void Enemys::fight()
 
     Enemy_one::fight();
     Enemy_two::fight();
-    Boss1::fight();
+    if(Kill_score::k_score>1000){
+        Boss1::fight();
+        if(Boss1::control()->is_disppear==0){
+        Boss1::control()->on=1;
+        }
+        if(Boss1::control()->blood<0){
+            Play::level=2;
+        }
+    }
 }
-
 

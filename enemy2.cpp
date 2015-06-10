@@ -9,8 +9,10 @@
 #include"mywindow.h"
 #include"hero.h"
 #include"bullet_one.enemy.h"
+#include"prop.h"
 #include"gun.h"
 #include"gun_e.h"
+#include"play.h"
 
 Enemy_two* Enemy_two::power = new Enemy_two;
 
@@ -27,8 +29,6 @@ Enemy_two* Enemy_two::head = Enemy_two::power;
 Enemy_two* Enemy_two::link = Enemy_two::head;
 
 int Enemy_two::cout_down = 0;
-
-int Enemy_two::fire_cout_down = 0;
 
 Enemy_two::Enemy_two()
 {
@@ -56,6 +56,7 @@ Enemy_two::Enemy_two()
     this->cout_down_b=0;
     this->is_disppear=0;
     this->dis_cout_down=0;
+    this->fire_cout_down=0;
 }
 
 void Enemy_two::move()
@@ -106,23 +107,39 @@ void Enemy_two::create_enemy()
 
 void Enemy_two::show_enemy(Enemy_two* heads)
 {
-        if(heads->alive==1){
-            heads->move();
-            Gun_e::fight(21, heads);
-            if(heads->sprite.getGlobalBounds().intersects(Hero::control()->sprite.getGlobalBounds())&&Hero::control()->alive==1){
-                Hero::control()->alive=0;
-                heads->alive=0;
+    if(heads->alive==1){
+        heads->move();
+        if(heads->sprite.getGlobalBounds().intersects(Hero::control()->sprite.getGlobalBounds())&&Hero::control()->alive==1){
+            if(Prop::control()->is_fence==0){
+            Hero::control()->alive=0;
             }
+            heads->alive=0;
+        }
+    }
+
+    if(heads->alive==1){
+        if(heads->fire_cout_down==20){
+            Bullet_one_enemy::create_bullet(heads, 5);
+            heads->fire_cout_down=0;
         }
         else{
-            if(heads->is_disppear==0){
-                heads->dis_step(heads);
-                MyWindow::control()->window.draw(heads->disppear);
-            }
+            ++heads->fire_cout_down;
         }
-        if(heads->exist_son==1){
-            Enemy_two::show_enemy(heads->next);
+        heads->move();
+        if(heads->sprite.getGlobalBounds().intersects(Hero::control()->sprite.getGlobalBounds())&&Hero::control()->alive==1){
+            Hero::control()->alive=0;
+            heads->alive=0;
         }
+    }
+    else{
+        if(heads->is_disppear==0){
+            heads->dis_step(heads);
+            MyWindow::control()->window.draw(heads->disppear);
+        }
+    }
+    if(heads->exist_son==1){
+        Enemy_two::show_enemy(heads->next);
+    }
 }
 
 void Enemy_two::clear_enemy()
